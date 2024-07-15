@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-wrapper">
+          <h1>CV Maker</h1>
+          <button>Create a project</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="card">
+          <h1>Create CV width "CV Maker"</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam velit
+            rem omnis tenetur itaque sint magnam possimus repellendus tempore
+            iure nostrum atque aliquam a deserunt eos ratione sit numquam,
+            voluptas reprehenderit. Labore perspiciatis, deleniti cupiditate,
+            enim ipsum at mollitia sunt maxime autem doloribus veritatis ad
+            maiores laudantium ullam nam rem quam placeat quasi rerum atque?
+            Ducimus atque, exercitationem repellendus, facere similique culpa
+            rerum modi dolor id cum excepturi autem. Enim repellat
+            necessitatibus voluptas ipsam possimus iure modi illum culpa, quis
+            ducimus! Repudiandae reprehenderit, exercitationem, quo praesentium
+            obcaecati id maxime consequuntur laudantium aspernatur corporis eius
+            provident quas, vitae ipsum eum ullam.
+          </p>
+          <a href="./registr.html"><button>Join us</button></a>
+          <a href="./login.html"><button>Log in</button></a>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const btn = document.querySelector("button");
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const check = JSON.parse(localStorage.getItem("checkbox"));
+
+        // console.log(check);
+
+        if (check === true) {
+          window.location.href = "./projects.html";
+        } else if (check === false) {
+          window.location.href = "./login.html";
+        } else {
+          window.location.href = "./registr.html";
+        }
+      });
+    </script>
+  </body>
+</html>

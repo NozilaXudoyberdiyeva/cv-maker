@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>projects</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-wrapper">
+          <div class="header-start">
+            <i class="fa-solid fa-user"></i>
+            <h1 class="user">User</h1>
+          </div>
+          <div class="header-end">
+            <button class="log-out">Log out</button>
+            <button type="button" class="delete-btn">Delete account</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="cards">
+        <a href="./create.html"><button class="create-btn">+</button></a>
+      </div>
+    </div>
+
+    <script>
+      const logOutBtn = document.querySelector(".log-out");
+      const deleteBtn = document.querySelector(".delete-btn");
+      const user = document.querySelector(".user");
+      const cards = document.querySelector(".cards");
+
+      user.textContent = JSON.parse(localStorage.getItem("userData")).userName;
+
+      deleteBtn.addEventListener("click", () => {
+        localStorage.clear();
+        window.location.href = "./index.html";
+      });
+
+      logOutBtn.addEventListener("click", () => {
+        localStorage.clear();
+        window.location.href = "./index.html";
+      });
+
+      const cvsArr = JSON.parse(localStorage.getItem("cvsData"));
+      // console.log(cvsArr);
+
+      cvsArr.map((cvdata) => {
+        const newCard = document.createElement("div");
+        newCard.classList.add("cards-item");
+        newCard.style.backgroundImage = `url(${cvdata.img})`;
+
+        cards.appendChild(newCard);
+        const userTitle = document.createElement("h2");
+        userTitle.textContent = cvdata.name;
+        newCard.appendChild(userTitle);
+      });
+    </script>
+  </body>
+</html>

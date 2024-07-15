@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>create</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-wrapper">
+          <h1>CV Maker</h1>
+          <a href="./projects.html"><button>My projects</button></a>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="container">
+        <div class="create-wrapper">
+          <div class="form">
+            <form class="create-form" action="">
+              <label for="img">Img URL</label>
+              <input type="text" name="img" id="img" />
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" />
+              <label for="job">Job</label>
+              <input type="text" name="job" id="job" />
+              <label for="date">Date of Birth</label>
+              <input type="date" id="date" name="date" />
+              <label for="desc">Description</label>
+              <textarea name="desc" id="desc">I a'm...</textarea>
+              <a href="./projects.html"><button class="save">SAVE</button></a>
+            </form>
+          </div>
+          <div class="cv">
+            <div class="cv-head">
+              <img
+                class="user-img"
+                width="150px"
+                src="./images/user.jpg"
+                alt=""
+              />
+              <h2 class="user-title">User Title</h2>
+            </div>
+            <div class="cv-body">
+              <h3 class="user-job">Job:</h3>
+              <h3 class="user-birth">Date of birth:</h3>
+              <p class="user-desc">About me:</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      const form = document.querySelector(".create-form");
+      const imgInput = document.querySelector("#img");
+      const nameInput = document.querySelector("#name");
+      const jobInput = document.querySelector("#job");
+      const dateInput = document.querySelector("#date");
+      const descInput = document.querySelector("#desc");
+      const saveBtn = document.querySelector(".save");
+
+      const userImg = document.querySelector(".user-img");
+      const userTitle = document.querySelector(".user-title");
+      const userJob = document.querySelector(".user-job");
+      const userBirth = document.querySelector(".user-birth");
+      const userDesc = document.querySelector(".user-desc");
+
+      imgInput.addEventListener("input", () => {
+        userImg.src = imgInput.value;
+      });
+
+      nameInput.addEventListener("input", () => {
+        userTitle.textContent = nameInput.value;
+      });
+
+      jobInput.addEventListener("input", () => {
+        userJob.textContent = `Job: ${jobInput.value}`;
+      });
+
+      dateInput.addEventListener("input", () => {
+        userBirth.textContent = `Date of birth: ${dateInput.value}`;
+      });
+
+      descInput.addEventListener("input", () => {
+        userDesc.textContent = `About me: ${descInput.value}`;
+      });
+
+      const cvsArr = localStorage.getItem("cvsData")
+        ? JSON.parse(localStorage.getItem("cvsData"))
+        : [];
+
+      const pushData = (cvData) => {
+        cvsArr.push(cvData);
+        localStorage.setItem("cvsData", JSON.stringify(cvsArr));
+      };
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          saveBtn.click();
+        }
+      });
+
+      saveBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const cvData = {
+          img: imgInput.value,
+          name: nameInput.value,
+          job: jobInput.value,
+          date: dateInput.value,
+          desc: descInput.value,
+        };
+        pushData(cvData);
+        window.location.href = "./projects.html";
+      });
+    </script>
+  </body>
+</html>

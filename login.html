@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>CV Maker</h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <form class="registr-form">
+          <input class="login-name" type="text" placeholder="Username" />
+          <input
+            class="login-password"
+            type="password"
+            placeholder="Password"
+          />
+          <div>
+            <input class="check" type="checkbox" id="checkbox" />
+            <label for="checkbox">Remember me</label>
+          </div>
+          <button class="login-btn">Submit</button>
+
+          <a href="./registr.html">Registration</a>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const loginName = document.querySelector(".login-name");
+      const loginPassword = document.querySelector(".login-password");
+      const loginCheck = document.querySelector(".check");
+      const loginBtn = document.querySelector(".login-btn");
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          loginBtn.click();
+        }
+      });
+
+      loginBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let user = JSON.parse(localStorage.getItem("userData"));
+
+        if (
+          loginName.value == user.userName &&
+          loginPassword.value == user.password
+        ) {
+          window.location.href = "projects.html";
+
+          if (loginCheck.checked) {
+            localStorage.setItem("checkbox", true);
+          } else if (!loginCheck.checked) {
+            localStorage.setItem("checkbox", false);
+          }
+        } else {
+          alert("Wrong username or password");
+          loginName.value = "";
+          loginPassword.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>

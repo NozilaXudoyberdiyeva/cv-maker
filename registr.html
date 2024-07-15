@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>registr</title>
+  </head>
+  <link rel="stylesheet" href="./main.css" />
+  <body>
+    <header>
+      <div class="container">
+        <h1>CV Maker</h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <form class="registr-form" action="">
+          <input class="username" type="text" placeholder="Username" required />
+          <input class="email" type="email" placeholder="Email" required />
+          <input
+            class="password"
+            type="password"
+            placeholder="Password"
+            required
+          />
+          <button class="registr-btn">Submit</button>
+
+          <a href="./login.html">I have an account</a>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const userName = document.querySelector(".username");
+      const email = document.querySelector(".email");
+      const password = document.querySelector(".password");
+      const registrBtn = document.querySelector(".registr-btn");
+
+      registrBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            registrBtn.click();
+          }
+        });
+
+        const userData = {
+          userName: userName.value,
+          email: email.value,
+          password: password.value,
+        };
+
+        //   console.log(userData);
+        localStorage.setItem("userData", JSON.stringify(userData));
+        // userName.value = "";
+        // email.value = "";
+        // password.value = "";
+
+        window.location.href = "projects.html";
+      });
+    </script>
+  </body>
+</html>
