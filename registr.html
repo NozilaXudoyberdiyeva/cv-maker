@@ -36,14 +36,14 @@
       const password = document.querySelector(".password");
       const registrBtn = document.querySelector(".registr-btn");
 
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          registrBtn.click();
+        }
+      });
+
       registrBtn.addEventListener("click", (e) => {
         e.preventDefault();
-
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") {
-            registrBtn.click();
-          }
-        });
 
         const userData = {
           userName: userName.value,
